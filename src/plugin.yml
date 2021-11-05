@@ -1,0 +1,8 @@
+name: Deathlink
+version: 0.0.1
+depend: [ProtocolLib]
+author: ThaumicTheory
+main: thaumictheory.deathlink.Spigot
+description: Deathlink gamemode plugin
+api-version: 1.17
+   
