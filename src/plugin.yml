@@ -1,5 +1,5 @@
 name: Deathlink
-version: 0.0.1
+version: 0.0.2
 depend: [ProtocolLib]
 author: ThaumicTheory
 main: thaumictheory.deathlink.Spigot

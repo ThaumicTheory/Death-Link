@@ -17,7 +17,6 @@ public class PlayerGameModeChangeEvent implements Listener
 	{
 		if(!event.isCancelled() && Common.enabled) 
 		{
-			event.setCancelled(true);
 			GameMode oldGameMode = event.getPlayer().getGameMode();
 			GameMode newGameMode = event.getNewGameMode();
 			

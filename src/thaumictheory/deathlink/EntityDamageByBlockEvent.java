@@ -6,15 +6,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
-public class EntityDamageEvent implements Listener
+public class EntityDamageByBlockEvent implements Listener
 {
-	public EntityDamageEvent()
+	public EntityDamageByBlockEvent()
 	{
 		Bukkit.getPluginManager().registerEvents(this, Common.spigot);
 	}
 	
 	@EventHandler
-	public void EntityDamage(org.bukkit.event.entity.EntityDamageEvent event) 
+	public void EntityDamageByBlock(org.bukkit.event.entity.EntityDamageByBlockEvent event) 
 	{
 		if(!event.isCancelled() && Common.enabled && event.getEntity() instanceof Player && Common.isPlayerPlaying(((Player)event.getEntity())) && !event.getCause().equals(DamageCause.CUSTOM))
 		{
@@ -27,7 +27,7 @@ public class EntityDamageEvent implements Listener
 				
 				selectedPlayer.setHealth(player.getHealth()); // corrects incase of a desync
 				selectedPlayer.damage(event.getFinalDamage()); //damages all the players
-				if(event.getFinalDamage() > 0.05f) selectedPlayer.sendMessage(Messaging.chatFormatter("&#cccccc" + player.getName() + " &#FF0000took &#990000" + Common.moreFriendlyRounding(event.getFinalDamage()/2) + " hearts &#ff0000of damage" + Common.friendlyReason(event.getCause()) + "!"));
+				if(event.getFinalDamage() > 0.05f) selectedPlayer.sendMessage(Messaging.chatFormatter("&#cccccc" + player.getName() + " &#FF0000 took &#990000" + Common.moreFriendlyRounding(event.getFinalDamage()/2) + " hearts &#ff0000 of damage" + Common.friendlyReason(event.getCause()) + "!"));
 			}
 			Common.currentHP = player.getHealth() - event.getFinalDamage();
 			Common.currentHPPercent = Common.currentHP / Common.maxHealth;
