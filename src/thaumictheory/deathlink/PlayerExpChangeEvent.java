@@ -21,7 +21,6 @@ public class PlayerExpChangeEvent implements Listener
 			{
 				if(selectedPlayer.getUniqueId().equals(event.getPlayer().getUniqueId()))
 					continue; // dont do anything to the player that called this event they will get exp normally not by this event
-				
 				Common.spigot.scheduler.scheduleSyncDelayedTask(Common.spigot, new Runnable()
 				{
 

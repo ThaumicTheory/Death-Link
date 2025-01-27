@@ -28,7 +28,7 @@ public class Common {
 	
 	public static boolean sharableEffect(PotionEffectType potionType) 
 	{
-		List<PotionEffectType> blackListed = List.of(PotionEffectType.HARM, PotionEffectType.HEAL, PotionEffectType.WITHER, PotionEffectType.POISON,PotionEffectType.REGENERATION);
+		List<PotionEffectType> blackListed = List.of(PotionEffectType.INSTANT_DAMAGE, PotionEffectType.INSTANT_HEALTH, PotionEffectType.WITHER, PotionEffectType.POISON,PotionEffectType.REGENERATION);
 		return !blackListed.contains(potionType);
 	}
 	
@@ -86,16 +86,16 @@ public class Common {
 			for (Player selectedPlayer :  Common.getPlayingPlayers())
 			{
 				if(selectedPlayer.getUniqueId().equals(player.getUniqueId())) continue;
-				selectedPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);
+				selectedPlayer.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
 				selectedPlayer.setHealth(maxHealth * currentHPPercent);
 			}
-			player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);
+			player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
 			player.setHealth(maxHealth * currentHPPercent);
 			currentHP = maxHealth * currentHPPercent;
 		}
 		else
 		{
-			player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);
+			player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
 			player.setHealth(currentHP);
 		}
 		if(xpLevel != 0) player.setLevel(xpLevel);
@@ -134,7 +134,7 @@ public class Common {
 	public static void updateHealthPlayerLeave(Player player) 
 	{
 		assignNewHost(player);
-		player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
+		player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
 		if(numberOfPlayers() <= maxPlayerHealthIncrease) 
 		{
 			if(maxHealth == healthStarting) maxHealth = 0;
@@ -143,7 +143,7 @@ public class Common {
 			{
 				if(selectedPlayer.getUniqueId().equals(player.getUniqueId()))
 					continue; // dont do anything to the player that called this event they will take damage normally not by this event
-				selectedPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);
+				selectedPlayer.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
 				selectedPlayer.setHealth(maxHealth * currentHPPercent);
 			}
 			currentHP = maxHealth * currentHPPercent;
